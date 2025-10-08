@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+@font-face {
+    font-family: 'DM Sans';
+    src: local('DM Sans Bold'), local('DMSans-Bold'),
+        url('/fonts/dm-sans/DMSans-Bold.woff2') format('woff2'),
+        url('/fonts/dm-sans/DMSans-Bold.woff') format('woff'),
+        url('/fonts/dm-sans/DMSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: local('DM Sans ExtraBold'), local('DMSans-ExtraBold'),
+        url('/fonts/dm-sans/DMSans-ExtraBold.woff2') format('woff2'),
+        url('/fonts/dm-sans/DMSans-ExtraBold.woff') format('woff'),
+        url('/fonts/dm-sans/DMSans-ExtraBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: local('DM Sans Light'), local('DMSans-Light'),
+        url('/fonts/dm-sans/DMSans-Light.woff2') format('woff2'),
+        url('/fonts/dm-sans/DMSans-Light.woff') format('woff'),
+        url('/fonts/dm-sans/DMSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: local('DM Sans Medium'), local('DMSans-Medium'),
+        url('/fonts/dm-sans/DMSans-Medium.woff2') format('woff2'),
+        url('/fonts/dm-sans/DMSans-Medium.woff') format('woff'),
+        url('/fonts/dm-sans/DMSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: local('DM Sans Regular'), local('DMSans-Regular'),
+        url('/fonts/dm-sans/DMSans-Regular.woff2') format('woff2'),
+        url('/fonts/dm-sans/DMSans-Regular.woff') format('woff'),
+        url('/fonts/dm-sans/DMSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: local('DM Sans SemiBold'), local('DMSans-SemiBold'),
+        url('/fonts/dm-sans/DMSans-SemiBold.woff2') format('woff2'),
+        url('/fonts/dm-sans/DMSans-SemiBold.woff') format('woff'),
+        url('/fonts/dm-sans/DMSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme{
+   --font-dm: 'DM Sans';
+}
+
+html {
+    overflow-y: auto; 
+    overflow-x: hidden;
+    /* Aseguramos que el navegador no interfiera */
+    scroll-behavior: auto !important; 
+}
+
+body {
+    margin: 0;
+    /* CRÍTICO: Detiene el scroll nativo del navegador */
+    overflow: hidden !important; 
+    /* 🚨 INTENTO DE SOBRESCRIBIR EL ESTILO INLINE DEL SCROLL-BEHAVIOR si es posible */
+    scroll-behavior: auto !important;
+}
