@@ -12,7 +12,7 @@ import { Landing } from './pages/Landing'
 import { Formacion } from './pages/Formacion'
 import { NotFound } from './pages/NotFound'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { Header } from './components/header'
+import { Header } from './components/Header'
 import viewportUnitsBuggyfill from 'viewport-units-buggyfill'
 import { NuestroEquipo } from './pages/NuestroEquipo'
 viewportUnitsBuggyfill.init()
