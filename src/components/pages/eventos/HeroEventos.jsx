@@ -40,7 +40,8 @@ export const HeroEventos = ({textToAnimate, scrollDurationVh, id}) => {
         
         tl.to(linkRef.current, {
             opacity: 1,
-            duration: 0.3, 
+            y: 0,
+            duration: 1, 
         }, ">");
         
         return () => split.revert()
@@ -67,9 +68,9 @@ export const HeroEventos = ({textToAnimate, scrollDurationVh, id}) => {
                     <p ref={textTargetRef} className='text-[30px] max-[1024px]:text-[25px] leading-snug font-light text-[#a0a0a0]'>
                         {textToAnimate}
                     </p>
-                    <Link to='/nuestro-equipo' ref={linkRef} className='text-white text-[20px] leading-0 flex items-center gap-2 transition-all duration-300'>
-                        <span className='w-5 h-5 bg-[#7d8570] rounded-full'></span>
-                        Conoce a nuestro equipo
+                    <Link to='/nuestro-equipo' ref={linkRef} className='w-fit text-white text-[20px] leading-0 flex items-center transition-all duration-300 relative group'>
+                        <span className='w-5 h-5 absolute bg-[#7d8570] rounded-full group-hover:w-[110%] group-hover:h-10 transition-all duration-300'></span>
+                        <p className="ml-7 z-1">Conoce a nuestro equipo</p>
                     </Link>
                 </div>
                 <div >

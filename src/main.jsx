@@ -2,19 +2,20 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, RouterProvider } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import * as Sentry from "@sentry/react";
 import { GoogleAnalyticsLoader } from './components/utils/GoogleAnalyticsLoader.jsx';
 import { CookieManager } from "react-cookie-manager";
+import router from './router/index.jsX';
 
 Sentry.init({
   dsn: "https://3a089bb274cfd6305bcd5647fecf07f5@o4507094780018688.ingest.de.sentry.io/4510034259083344",
   sendDefaultPii: true
 });
 
-// fix iconos (Vite)
+// fix icons (Vite)
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: new URL('leaflet/dist/images/marker-icon-2x.png', import.meta.url).href,
@@ -24,7 +25,7 @@ L.Icon.Default.mergeOptions({
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router>
+    <RouterProvider router={router}>
       <CookieManager
           classNames={
             {
@@ -90,6 +91,6 @@ createRoot(document.getElementById('root')).render(
           <App />
           <GoogleAnalyticsLoader />
         </CookieManager>
-    </Router>
+    </RouterProvider>
   </StrictMode>
 )
