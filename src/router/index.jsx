@@ -1,12 +1,14 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter } from 'react-router'
 import { motion } from "motion/react"
 
 import App from '../App'
 import { Eventos } from '../pages/Eventos'
+import { Evento } from '../pages/Evento'
 import { Landing } from '../pages/Landing'
 import { Formacion } from '../pages/Formacion'
 import { NotFound } from '../pages/NotFound'
 import { NuestroEquipo } from '../pages/NuestroEquipo'
+import { OtrosServicios } from '../pages/OtrosServicios'
 
 
 const AnimatedPage = ({ children }) => (
@@ -30,6 +32,10 @@ const AnimatedPage = ({ children }) => (
       path: "/eventos",
       Component: Eventos,
     },
+    Evento: {
+      path: "/eventos/:slug",
+      Component: Evento,
+    },
     Formacion: {
       path: "/formacion",
       Component: Formacion,
@@ -37,6 +43,10 @@ const AnimatedPage = ({ children }) => (
     NuestroEquipo: {
       path: "/nuestro-equipo",
       Component: NuestroEquipo,
+    },
+    OtrosServicios: {
+      path: "/otros-servicios",
+      Component: OtrosServicios,
     },
     NotFound: {
       path: "*",
@@ -56,6 +66,6 @@ const router = createBrowserRouter([
       ),
     })),
   },
-]);
+])
 
-export default router;
+export default router

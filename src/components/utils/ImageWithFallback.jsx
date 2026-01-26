@@ -36,7 +36,7 @@ export function ImageWithFallback(props) {
           className={`bg-gray-100 text-center align-middle ${className ?? ''} ${fadeClass}`}
           style={{ ...style, position: 'relative' }}
         >
-          <div className="flex items-center justify-center w-full h-full">
+          <div className="flex items-center justify-center w-full h-fit">
             <img
               src={ERROR_IMG_SRC}
               alt="Error loading image"

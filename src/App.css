@@ -65,9 +65,23 @@
     font-style: normal;
     font-display: swap;
 }
+@font-face {
+    font-family: 'Ogg';
+    src: local('Ogg Regular'), local('OggRegular'),
+        url('/fonts/OggRegular.woff2') format('woff2'),
+        url('/fonts/OggRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 @theme{
    --font-dm: 'DM Sans';
+   --font-ogg: 'Ogg';
+}
+
+*{
+    font-family: 'DM Sans' !important;
 }
 
 html {
@@ -83,4 +97,108 @@ body {
     overflow: hidden !important; 
     /* 🚨 INTENTO DE SOBRESCRIBIR EL ESTILO INLINE DEL SCROLL-BEHAVIOR si es posible */
     scroll-behavior: auto !important;
+}
+
+.react-tel-input .flag-dropdown{
+    position: relative !important;
+    border-radius: 15px !important;
+    padding: 2px 5px !important;
+}
+
+.react-tel-input .form-control {
+    padding-left: 12px !important;
+}
+
+.react-tel-input .selected-flag {
+    border-radius: 15px !important;
+    position: relative !important;
+    background: #5a5e5369 !important;
+    border: 1px solid #5a5e53 !important;
+}
+
+.react-tel-input {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    justify-content: center !important;
+    gap: 15px !important;
+}
+
+ul.country-list {
+    padding: 10px 5px 10px 5px !important;
+}
+
+.react-tel-input .selected-flag .arrow.up {
+    border-top: none !important;
+    border-bottom: 4px solid #fff !important;
+}
+
+.react-tel-input .selected-flag .arrow {
+    transition: all 0.3s !important;
+    border-bottom: none !important;
+    border-top: 4px solid #fff !important;
+}
+
+.react-tel-input .country-list .country.highlight, .react-tel-input .country-list .country:hover {
+    background: #b4baa8 !important;
+    color:white !important;
+    border-radius:20px !important;
+}
+.react-tel-input .country-list .country{
+    margin: 5px 0 !important;
+}
+.word-wrapper {
+    display: inline-block;
+    white-space: nowrap;
+}
+.coursesContainer{
+    interpolate-size: allow-keyword; 
+}
+.rdp-root {
+    --rdp-today-color: #ffffff !important;
+    --rdp-day-width: 80px !important;
+    --rdp-day-height: 80px !important;
+    --rdp-day_button-height: 55px !important;
+    --rdp-day_button-width: 55px !important;
+}
+.rdp-day_button {
+    margin: 0 auto !important;
+}
+.rdp-today .rdp-day_button{
+    background:  #3b4252 !important;
+}
+.eventsHero{
+    h2 {
+        font-size: 50px;          /* text-[50px] */
+        line-height: 1.25;        /* leading-tight */
+        font-weight: 300;         /* font-light */
+        color: #ffffff;           /* text-white */
+    }
+    p {
+        font-size: 22px;          /* text-[22px] */
+        line-height: 1.375;       /* leading-snug */
+        font-weight: 300;         /* font-light */
+        color: #a2a39f;           /* text-[#a2a39f] */
+    }
+}
+
+@media (max-width: 768px) {
+    h1, h2, h3{
+        font-size: 30px !important;
+    }
+    p{
+        font-size: 20px !important;
+    }
+    .rdp-root {
+    --rdp-today-color: #ffffff !important;
+    --rdp-day-width: 50px !important;
+    --rdp-day-height:50px !important;
+    --rdp-day_button-height: 45px !important;
+    --rdp-day_button-width: 45px !important;
+    }
+    .rdp-day_button {
+        margin: 0 auto !important;
+    }
+    .rdp-today .rdp-day_button{
+        background:  #3b4252 !important;
+    }
 }

@@ -1,4 +1,62 @@
 html{
     background-color: #2c2c2c;
-    font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'DM Sans';
+}
+
+.border-anim{
+    animation: animate-rotate 4s linear infinite;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(
+        from var(--aa),
+        #7d8570 0%,
+        #98a08b 5%,
+        transparent 5%,
+        transparent 40%,
+        #7d8570 100%
+    );
+}
+
+@property --aa {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes animate-rotate {
+    0% {
+        --aa: 0deg;
+    }
+    100% {
+        --aa: 360deg;
+    }
+    
+}
+.border-anim-course{
+    animation: animate-rotate-course 4s linear infinite;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(
+        from var(--bb),
+        var(--course-color) 0%,
+        var(--course-color) 0.5%,
+        transparent 0.5%,
+        transparent 40%,
+        var(--course-color) 100%
+    );
+}
+
+@property --bb {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes animate-rotate-course {
+    0% {
+        --bb: 0deg;
+    }
+    100% {
+        --bb: 360deg;
+    }
 }

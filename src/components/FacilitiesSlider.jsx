@@ -39,8 +39,8 @@ export const FacilitiesSlider = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div className="w-full relative">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-35 max-[1025px]:gap-5 items-center justify-between">
+      <div className="max-[1025px]:order-2 w-full relative">
         <div className="rounded-3xl overflow-hidden border-4 border-neutral-600">
           <AnimatePresence mode="wait">
             <motion.div
@@ -49,25 +49,26 @@ export const FacilitiesSlider = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="w-full h-[525px] max-[1920px]:h-[450px] relative"
             >
               <ImageWithFallback
                 src={slides[currentSlide].imageUrl}
                 alt={slides[currentSlide].alt}
-                className="w-full h-[525px] object-cover"
+                className="w-full h-[525px] max-[1920px]:h-[450px] object-cover"
               />
             </motion.div>
           </AnimatePresence>
         </div>
         
         {/* Indicadores verticales */}
-        <div className="absolute -right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 max-[1024px]:flex-row max-[1024px]:left-[50%] max-[1024px]:translate-x-[-50%] max-[1024px]:bottom-[-60px] max-[1024px]:top-[50%] max-[1024px]:translate-y-55">
+        <div className="absolute -right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 max-[1025px]:flex-row z-2 max-[1025px]:left-1/2 max-[1025px]:-translate-x-1/2 w-fit max-[1025px]:bottom-[-30px] max-[1025px]:top-auto">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? "bg-white opacity-100 h-8 max-[1024px]:w-8 max-[1024px]:h-2"
+                  ? "bg-white opacity-100 h-8 max-[1025px]:w-8 max-[1025px]:h-2"
                   : "bg-white opacity-40 hover:opacity-60 cursor-pointer"
               }`}
               aria-label={`Ir a slide ${index + 1}`}
@@ -76,7 +77,7 @@ export const FacilitiesSlider = () => {
         </div>
       </div>
 
-      <div>
+      <div className="max-w-xl">
         <h2 className="text-white text-3xl mb-6">Nuestras instalaciones</h2>
         <p className="text-neutral-400 mb-6">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 

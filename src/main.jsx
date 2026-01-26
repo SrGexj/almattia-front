@@ -6,13 +6,12 @@ import { BrowserRouter as Router, RouterProvider } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import * as Sentry from "@sentry/react";
-import { GoogleAnalyticsLoader } from './components/utils/GoogleAnalyticsLoader.jsx';
-import { CookieManager } from "react-cookie-manager";
-import router from './router/index.jsX';
+import router from './router/index.jsx';
 
 Sentry.init({
   dsn: "https://3a089bb274cfd6305bcd5647fecf07f5@o4507094780018688.ingest.de.sentry.io/4510034259083344",
-  sendDefaultPii: true
+  integrations: [Sentry.browserTracingIntegration()],
+  tracesSampleRate: 1.0,
 });
 
 // fix icons (Vite)
@@ -24,73 +23,8 @@ L.Icon.Default.mergeOptions({
 });
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  
     <RouterProvider router={router}>
-      <CookieManager
-          classNames={
-            {
-              acceptButton:  "!bg-[#f0f0f030] transition-all duration-300 hover:!bg-[#7d8570] !text-white text-xs text-medium w-full px-3 py-1.5 rounded-md mr-2",
-              declineButton: "!bg-[#1c1c1c] transition-all duration-300 hover:!bg-[#f00] w-full text-[#1c1c1c] text-xs px-3 py-1.5 rounded-md",
-              manageButton:  "!text-white transition-all duration-300 hover:!border-[#7d8570] border border-gray-700 text-xs px-3 py-1.5 rounded-md",
-            }
-          }
-          cookieKitId=""
-          showManageButton={true}
-          theme="dark"
-          displayType="popup"
-          enableFloatingButton={false}
-          translations={{
-            // General
-            title: "Usamos cookies 🍪",
-            message: "Valoramos tu privacidad. Elige qué cookies deseas permitir. Las cookies esenciales siempre están habilitadas, ya que son necesarias para que el sitio web funcione correctamente.",
-            buttonText: "Aceptar todas",
-            declineButtonText: "Rechazar todas",
-            manageButtonText: "Configurar cookies",
-            manageTitle: "Configurar cookies",
-            manageMessage: "Selecciona las cookies que deseas permitir:",
-            privacyPolicyText: 'Política de cookies',
-            // Esenciales
-            manageEssentialTitle: "Cookies esenciales",
-            manageEssentialSubtitle: "Estas cookies son necesarias para el funcionamiento básico del sitio web y no se pueden desactivar.",
-            manageEssentialStatusButtonText: "Siempre activas",
-            // Analíticas
-            manageAnalyticsTitle: "Analíticas",
-            manageAnalyticsSubtitle: "Estas cookies nos ayudan a mejorar el sitio web recopilando y reportando información de forma anónima.",
-            // Publicitarias
-            manageAdvertTitle: "Publicidad",
-            manageAdvertSubtitle: "Estas cookies se utilizan para ofrecer anuncios más relevantes para ti y tus intereses.",
-            // Sociales
-            manageSocialTitle: "Redes sociales",
-            manageSocialSubtitle: "Estas cookies te permiten compartir contenido en redes sociales y otras plataformas.",
-            // Estados
-            manageCookiesStatus: "Status: {{status}} on {{date}}",
-            manageCookiesEnabled: "activadas",
-            manageCookiesDisabled: "desactivadas",
-            // Botones
-            manageCancelButtonText: "Cancelar",
-            manageSaveButtonText: "Guardar configuración",
-            floatingButtonAriaLabel: "Administrar preferencias de cookies"
-          }}
-          privacyPolicyUrl='/cookies'
-          onAccept={
-            () => {
-              window.gtag?.("consent", "update", { analytics_storage: "granted" });
-          }}
-          onDecline={
-            () => {
-              window.gtag?.("consent", "update", { analytics_storage: "denied" });
-          }}
-          onManage={(preferences) => {
-            if (preferences.analytics) {
-              window.gtag?.("consent", "update", { analytics_storage: "granted" });
-            } else {
-              window.gtag?.("consent", "update", { analytics_storage: "denied" });
-            }
-          }}
-        >
-          <App />
-          <GoogleAnalyticsLoader />
-        </CookieManager>
     </RouterProvider>
-  </StrictMode>
+  
 )

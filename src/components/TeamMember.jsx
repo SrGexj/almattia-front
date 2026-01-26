@@ -6,11 +6,12 @@ export function TeamMember(props) {
     return (
         <motion.div 
             className="flex flex-col items-center cursor-pointer"
-            whileHover={{ y: -8 }}
+            whileHover={{ y: -8, transition: { duration: 0.18, ease: "easeOut", delay: 0 } }}
             initial={animate ? { y: 10, opacity: 0 } : {}}
             animate={animate ? { y: 0, opacity: 1 } : {}}
             exit={animate ? { y: 10, opacity: 0 } : {}}
             transition={{ duration: 0.3, ease: "easeOut", delay: index * 0.1 }}
+            viewport={{ margin: "0px 0px -250px 0px", once: true }}
         >
             <motion.div 
                 className="bg-neutral-200 rounded-2xl overflow-hidden w-full aspect-[3/4] mb-4"

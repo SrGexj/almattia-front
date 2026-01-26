@@ -2,16 +2,19 @@ import { Link } from "react-router-dom"
 import { usePageScroll } from "../contexts/PageScrollContext"
 import { motion } from "motion/react"
 import { useEffect, useState } from "react"
+import { MobileMenu } from "./MobileMenu"
+import { Instagram } from "lucide-react"
 
 export const Header = ({ id }) => {
 
     const menuItems = [
         { name: 'Nuestro equipo', link: '/nuestro-equipo' },
         { name: 'Eventos', link: '/eventos' },
-        { name: 'Servicios', link: '/servicios' },
         { name: 'Formacion', link: '/formacion' },
         { name: 'Otros Servicios', link: '/otros-servicios' },
     ]
+
+    const isMobile = window.innerWidth < 768
 
     const { currentPage } = usePageScroll()
 
@@ -22,6 +25,7 @@ export const Header = ({ id }) => {
         top: 0,
         opacity: 0,
     })
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     const handleMoveIndicator = (e) => {
         const target = e.target.closest('li')
@@ -50,13 +54,28 @@ export const Header = ({ id }) => {
         }))
     }
 
+    const toggleMenu = () => {
+        setIsMobileMenuOpen((prev) => !prev)
+    }
+
     useEffect(() => {
 
     }, [navItemSize])
 
+    useEffect(() => {
+        // si isMobile es true, bloqueamos el scroll
+        if (isMobileMenuOpen) {
+            document.documentElement.style.overflow = 'hidden !important'
+            document.body.style.overflow = 'hidden !important'
+        } else {
+            document.documentElement.style.overflow = 'auto !important'
+            document.body.style.overflow = 'auto !important'
+        }
+    }, [isMobileMenuOpen])
+
     return (
-        <motion.header id={id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={`w-full h-fit p-5 text-white transition-all duration-300 flex items-center fixed ${currentPage !== 'home' ? 'justify-between p-3 pl-15 pr-5 max-[1024px]:left-0 ' : 'justify-between'} z-10 transition-all duration-500 ${currentPage === 'eventos' ? 'bg-[#7d8570]' : ''}`}>
-            <Link to={"/"} className={`w-30 transition-all duration-300 flex items-center justify-center max-[1024px]:!ml-0 ${currentPage !== 'home' ? 'ml-4' : 'w-full'}`}>
+        <motion.header id={id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={`w-full h-fit p-5 text-white transition-all duration-300 flex items-center fixed ${currentPage !== 'home' ? 'justify-between p-3 pl-15 pr-5 max-[1025px]:left-0 max-[768px]:pl-5' : 'justify-between'} z-10 transition-all duration-500 ${currentPage === 'eventos' ? 'bg-[#7d8570]' : currentPage === 'formacion' ? 'bg-[#353f4f]' : currentPage === 'otros-servicios' ? ''  : ''}`}>
+            <Link to={"/"} className={`w-30 transition-all duration-300 flex items-center justify-center max-[1025px]:!ml-0 ${currentPage !== 'home' ? 'ml-4' : 'w-full'}`}>
                 <motion.svg initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} style={{'fill': 'white'}} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 268.3 100.6" xmlSpace="preserve" width="150px" height="56px">
                     <path className="st0" d="M33.1,33.9v34h-3L23,60.7c0,7.2-3.7,7.2-3.7,7.2h-5c0,0-13.8,0-13.8-13.7s13.8-13.7,13.8-13.7h11.5v-6.5
                         c0-6.4-6.5-6.4-6.5-6.4H3.7v-7.2h15.6C19.3,20.2,33.1,20.2,33.1,33.9z M25.8,47.7H14.3c0,0-6.5,0-6.5,6.4s6.5,6.5,6.5,6.5h5
@@ -133,35 +152,44 @@ export const Header = ({ id }) => {
                     <path className="st0" d="M268.3,89.9v1.2h-2.6v9.4h-1.2v-9.4h-2.6v-1.2H268.3z"/>
                 </motion.svg>
             </Link>
-            { currentPage !== 'home' 
-            && (
-                <div className={`flex items-center gap-15 transition-all duration-300 ${currentPage !== 'home' ? 'opacity-100 visible pointer-events-auto w-fit' : 'opacity-0 invisible pointer-events-none w-0'} `}>
-                    <ul className="list-none flex gap-7" onMouseLeave={handleMouseLeave} style={{position: 'relative'}}>
-                        {menuItems.map((item, index) => (
-                            <motion.li 
-                                initial={{ opacity: 0, y: -10 }} 
-                                animate={{ opacity: 1, y: 0 }} 
-                                exit={{ opacity: 0, y: -10 }} 
-                                transition={{ delay: 0.1 * index }}
-                                key={index} 
-                                className="z-1"
-                                onMouseMove={handleMoveIndicator}
-                            >
-                                <Link to={item.link}>{item.name}</Link>
-                            </motion.li>
-                        ))}
-                        <span className={`hover-indicator absolute bg-[#fbfbfb50] top-[50%] p-4 px-4 -translate-y-1/2 rounded-2xl transition-all duration-300`} style={{width: navItemSize.width, height: navItemSize.height, left: navItemSize.left, opacity: navItemSize.opacity, padding: '0 10px'}}></span>
-                    </ul>
-                    <motion.span
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ delay: 0.1 * menuItems.length }}
-                    >
-                        <Link to="/contacto" className="bg-[#e8e1d9] text-[#2c2c2c] px-4 py-1 font-normal rounded-2xl hover:bg-[#2c2c2c] hover:text-[#e8e1d9] transition duration-300">Contacto</Link>
-                    </motion.span>
-                </div> 
-            )
+            { currentPage !== 'home' && !isMobile ?
+                (
+                    <div className={`flex items-center gap-15 transition-all duration-300 ${currentPage !== 'home' ? 'opacity-100 visible pointer-events-auto w-fit max-[768px]:hidden' : 'opacity-0 invisible pointer-events-none w-0'} `}>
+                        <ul className="list-none flex gap-7" onMouseLeave={handleMouseLeave} style={{position: 'relative'}}>
+                            {menuItems.map((item, index) => (
+                                <motion.li 
+                                    initial={{ opacity: 0, y: -10 }} 
+                                    animate={{ opacity: 1, y: 0 }} 
+                                    exit={{ opacity: 0, y: -10 }} 
+                                    transition={{ delay: 0.1 * index }}
+                                    key={index} 
+                                    className="z-1"
+                                    onMouseMove={handleMoveIndicator}
+                                >
+                                    <Link to={item.link}>{item.name}</Link>
+                                </motion.li>
+                            ))}
+                            <span className={`hover-indicator absolute bg-[#fbfbfb50] top-[50%] p-4 px-4 -translate-y-1/2 rounded-2xl transition-all duration-300`} style={{width: navItemSize.width, height: navItemSize.height, left: navItemSize.left, opacity: navItemSize.opacity, padding: '0 10px'}}></span>
+                        </ul>
+                        <motion.span
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ delay: 0.1 * menuItems.length }}
+                        >
+                            <Link to="/contacto" className="bg-[#e8e1d9] text-[#2c2c2c] px-4 py-1 font-normal rounded-2xl hover:bg-[#2c2c2c] hover:text-[#e8e1d9] transition duration-300">Contacto</Link>
+                        </motion.span>
+                    </div> 
+            ) : currentPage !== 'home' ? (
+                <>
+                    <div className="w-10 h-10 flex flex-col justify-center items-center gap-2 mr-2 cursor-pointer z-9" onClick={toggleMenu}>
+                        <span className={`w-full h-[2px] bg-white rounded-full transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                        <span className={`w-full h-[2px] bg-white rounded-full transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                        <span className={`w-full h-[2px] bg-white rounded-full transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                    </div>
+                    <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} menuItems={menuItems} />
+                </>
+            ) : null
     }
         </motion.header>
     )

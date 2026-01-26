@@ -18,7 +18,7 @@ export default function ChangableTitle({ titles, classes = '', time = 2000 }) {
   }, [index, titles, time])
 
   return (
-    <h1 className={`text-5xl max-[1024px]:text-2xl w-full text-start ${classes}`}>
+    <h1 className={`text-5xl max-[1025px]:text-2xl w-full text-start ${classes}`}>
       <span
         className={`transition-opacity duration-700 ease-in-out ${
           visible ? 'opacity-100' : 'opacity-0'
