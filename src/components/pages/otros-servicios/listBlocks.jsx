@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { InfoCard } from "../../ui/InfoCard"
 
-export const ModalitiesComp = ({ apiToken, apiUrl }) => {
+export const ListBlocks = ({ apiToken, apiUrl }) => {
 
      const [modalities, setModalities] = useState([])
 
@@ -16,14 +16,14 @@ export const ModalitiesComp = ({ apiToken, apiUrl }) => {
             }
         }
         try {
-            const response = await fetch(`${apiUrl}/modalities/es`, options)
+            const response = await fetch(`${apiUrl}/other-services/modalities/es`, options)
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`)
             }
             
             const data = await response.json()
-            setModalities(data.data)
+            setModalities(data)
 
         } catch (error) {
             console.error('Error fetching modalities:', error)
@@ -35,7 +35,7 @@ export const ModalitiesComp = ({ apiToken, apiUrl }) => {
     }, []);
 
     return (
-        <div className="grid grid-cols-4 max-[1025px]:grid-cols-2 max-[768px]:grid-cols-1 gap-2 max-[768px]:gap-5">           
+        <div className="grid grid-cols-3 max-[1025px]:grid-cols-2 max-[768px]:grid-cols-1 gap-10 max-[768px]:gap-5">           
             {
                 modalities?.length > 0 ? (
                     modalities.map((modality, index) => (
@@ -44,7 +44,7 @@ export const ModalitiesComp = ({ apiToken, apiUrl }) => {
                             index={index}
                             title={modality.title}
                             description={modality.description}
-                            icon={modality?.images?.icon?.url}
+                            icon={modality.images?.icon?.url}
                         />
                     ))
                 ) : (

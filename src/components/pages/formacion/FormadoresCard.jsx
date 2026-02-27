@@ -14,7 +14,7 @@ export const FormadoresCard = ({ formador, index }) => {
 
     return (
         <motion.div
-            className="relative flex flex-col gap-3 w-fit h-full items-center rounded-[20px] border-3 overflow-hidden border-[#6f819e]"
+            className="relative flex flex-col gap-3 lg:w-fit h-full items-center rounded-[20px] border-3 overflow-hidden border-[#6f819e]"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -22,7 +22,7 @@ export const FormadoresCard = ({ formador, index }) => {
             viewport={{ margin: "0px 0px -250px 0px", once: true }}
         >
             <motion.div
-                className="max-w-[250px] aspect-square max-h-[400px] h-full flex flex-col"
+                className="lg:max-w-[250px] aspect-square max-h-[400px] h-full flex flex-col"
                 initial="rest"
                 whileHover="hover"
                 animate="rest"

@@ -82,6 +82,8 @@
 
 *{
     font-family: 'DM Sans' !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -179,6 +181,24 @@ ul.country-list {
         font-weight: 300;         /* font-light */
         color: #a2a39f;           /* text-[#a2a39f] */
     }
+}
+
+.customList{
+    margin: 15px 0 0 ;
+    font-size: 18px;
+    color:#f5f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    li {
+        padding: 10px 15px;
+        background: linear-gradient(-175deg, #5e60626f 0%, #c7cacd7b 100%);
+        border-radius: 20px;
+    }
+}
+.MsoNormalCus{
+    margin-top: 15px;
+    font-size: 20px;
 }
 
 @media (max-width: 768px) {

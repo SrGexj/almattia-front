@@ -72,9 +72,8 @@ export const Header = ({ id }) => {
             document.body.style.overflow = 'auto !important'
         }
     }, [isMobileMenuOpen])
-
     return (
-        <motion.header id={id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={`w-full h-fit p-5 text-white transition-all duration-300 flex items-center fixed ${currentPage !== 'home' ? 'justify-between p-3 pl-15 pr-5 max-[1025px]:left-0 max-[768px]:pl-5' : 'justify-between'} z-10 transition-all duration-500 ${currentPage === 'eventos' ? 'bg-[#7d8570]' : currentPage === 'formacion' ? 'bg-[#353f4f]' : currentPage === 'otros-servicios' ? ''  : ''}`}>
+        <motion.header id={id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={`w-full h-fit p-5 top-0 text-white transition-all duration-300 flex items-center fixed ${currentPage !== 'home' ? 'justify-between p-3 pl-15 pr-5 max-[1025px]:left-0 max-[768px]:pl-5' : 'justify-between'} z-10 transition-all duration-500 ${currentPage === 'eventos' ? 'bg-[#7d8570]' : currentPage === 'formacion' ? 'bg-[#353f4f]' : currentPage === 'otros-servicios' ? ''  : ''}`}>
             <Link to={"/"} className={`w-30 transition-all duration-300 flex items-center justify-center max-[1025px]:!ml-0 ${currentPage !== 'home' ? 'ml-4' : 'w-full'}`}>
                 <motion.svg initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} style={{'fill': 'white'}} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 268.3 100.6" xmlSpace="preserve" width="150px" height="56px">
                     <path className="st0" d="M33.1,33.9v34h-3L23,60.7c0,7.2-3.7,7.2-3.7,7.2h-5c0,0-13.8,0-13.8-13.7s13.8-13.7,13.8-13.7h11.5v-6.5

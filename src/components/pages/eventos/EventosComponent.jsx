@@ -43,7 +43,7 @@ export const EventosComponent = ({ selectedCategory }) => {
     
     // Calcular el ancho de cada tarjeta: espacio disponible menos el peek, dividido entre las cards visibles
     const cardWidth = visibleCards > 0 
-        ? (containerWidth - (gap * visibleCards) - peekAmount) / visibleCards 
+        ? 375
         : 0
 
     const maxSlide = Math.max(0, (displayedEvents?.length || 0) - visibleCards)

@@ -46,6 +46,57 @@ html{
     );
 }
 
+.list-wrapper {
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    ul li {
+        position: relative;
+        /* padding-left: 2em; */
+        margin-bottom: 0.7em;
+        font-size: 1.08em;
+        color: #747b85;
+        line-height: 1.5;
+    }
+    ul li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.1em;
+        color: #7d8570;
+        font-size: 1em;
+        font-weight: bold;
+        transition: color 0.2s;
+    }
+    ul li:hover::before {
+        color: #4d5d77;
+    }
+    strong {
+        font-weight: 600;
+        color: #b1b6bf;
+    }
+}
+.courseInfo{
+    h3{
+        color: #f1f1f1;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 12px;
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 12px;
+        li{
+            color: #9fa7b4;
+            margin-bottom: 0;
+        }
+    }
+}
+
 @property --bb {
     syntax: "<angle>";
     inherits: false;

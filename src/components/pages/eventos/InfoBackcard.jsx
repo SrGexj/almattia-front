@@ -82,27 +82,12 @@ export const InfoBackcard = ({ slug }) => {
                         <span className="text-[14px] font-medium max-[768px]:text-[13px]">{eventInfo.price}</span>
                     </div>
                 )}
-
-                {/* Link externo */}
-                {eventInfo.link && (
-                    <div className="flex items-center gap-3 max-[768px]:gap-2">
-                        <LinkIcon size={20} strokeWidth={1.5} className="text-[#7d8570] max-[768px]:w-4 max-[768px]:h-4" />
-                        <a 
-                            href={eventInfo.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-[#7d8570] text-[14px] font-medium hover:text-[#98a08b] underline transition-colors max-[768px]:text-[13px]"
-                        >
-                            Más información
-                        </a>
-                    </div>
-                )}
             </div>
             
             {/* Texto largo */}
-            {eventInfo.long_text && (
-                <div 
-                    className="text-[#d4d6d1] text-[15px] font-light leading-relaxed prose prose-invert max-w-none
+            {eventInfo.short_text && (
+                <p 
+                    className="text-[#d4d6d1] text-[15px] font-light leading-normal prose prose-invert max-w-none
                     prose-p:text-[#d4d6d1] prose-p:mb-4
                     prose-ul:text-[#d4d6d1] prose-ul:list-disc prose-ul:pl-5
                     prose-ol:text-[#d4d6d1] prose-ol:list-decimal prose-ol:pl-5
@@ -111,7 +96,7 @@ export const InfoBackcard = ({ slug }) => {
                     prose-a:text-[#7d8570] prose-a:underline hover:prose-a:text-[#98a08b]
                     max-[768px]:text-[13px] max-[768px]:leading-relaxed
                     max-[768px]:prose-p:mb-3 max-[768px]:prose-li:mb-1.5"
-                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(eventInfo.long_text) }} 
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(eventInfo.short_text) }} 
                 />
             )}
         </div>

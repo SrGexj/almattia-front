@@ -162,7 +162,7 @@ export const ScrollBar = ({id}) => {
                                 backgroundColor: page.color,
                                 borderRadius: '12px',
                             }}>
-                                <style jsx>{`
+                                <style>{`
                                     .tag[data-id="${page.id}"]::after {
                                         border-right-color: ${page.color};
                                     }

@@ -9,6 +9,7 @@ import { Formacion } from '../pages/Formacion'
 import { NotFound } from '../pages/NotFound'
 import { NuestroEquipo } from '../pages/NuestroEquipo'
 import { OtrosServicios } from '../pages/OtrosServicios'
+import { Curso } from '../pages/Curso'
 
 
 const AnimatedPage = ({ children }) => (
@@ -39,6 +40,10 @@ const AnimatedPage = ({ children }) => (
     Formacion: {
       path: "/formacion",
       Component: Formacion,
+    },
+    Curso: {
+      path: "/cursos/:slug",
+      Component: Curso,
     },
     NuestroEquipo: {
       path: "/nuestro-equipo",

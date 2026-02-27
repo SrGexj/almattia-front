@@ -7,7 +7,7 @@ import { EventosCategories } from '../components/pages/eventos/EventosCategories
 import { EventosComponent } from '../components/pages/eventos/EventosComponent'
 import { StreetMap } from '../components/StreetMap'
 import { SectionsForm } from '../components/SectionsForm'
-import { motion, useScroll, useTransform } from "motion/react"
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react"
 import { PreLoader } from '../components/ui/PreLoader'
 import DOMPurify from 'dompurify'
 import { PreloaderContext } from '../contexts/PreloaderContext'

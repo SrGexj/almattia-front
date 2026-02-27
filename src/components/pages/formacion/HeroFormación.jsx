@@ -13,10 +13,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 export const HeroFormacion = ({scrollDurationVh, id, content}) => {
 
     const containerRef = useRef(null)
-    const textTargetRef = useRef(null)
-    const linkRef = useRef(null)
-    const splitRef = useRef(null)
-    const tlRef = useRef(null)
 
     const animations = createMotionAnimations(0.15)
 
@@ -25,73 +21,6 @@ export const HeroFormacion = ({scrollDurationVh, id, content}) => {
         if (!textToAnimate) return ''
         return DOMPurify.sanitize(textToAnimate, { ALLOWED_TAGS: [] })
     }, [textToAnimate])
-
-    useGSAP(() => {
-        // Solo ejecutar si tenemos texto y el elemento existe
-        if (!sanitizedText || !textTargetRef.current) return
-
-        // Limpiar animaciones previas
-        if (splitRef.current) {
-            splitRef.current.revert()
-        }
-        if (tlRef.current) {
-            tlRef.current.scrollTrigger?.kill()
-            tlRef.current.kill()
-        }
-
-        ScrollTrigger.getAll().forEach(st => {
-            if (st.trigger === containerRef.current) {
-                st.kill()
-            }
-        })
-
-        // Crear nuevo split
-        const split = new SplitText(textTargetRef.current, { 
-            type: "words,chars",
-            wordsClass: "word-wrapper"
-        })
-        splitRef.current = split
-        const chars = split.chars
-
-        gsap.set(linkRef.current, { opacity: 0 })
-        gsap.set(chars, { color: '#6d6d6d' })
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: containerRef.current,
-                pin: true,
-                start: "top top",
-                end: `+=${scrollDurationVh}vh`,
-                scrub: true,
-                refreshPriority: -1,
-            }
-        })
-        tlRef.current = tl
-
-        tl.to(chars, {
-            color: 'white',
-            stagger: 0.015,
-            ease: "none"
-        })
-        .to(linkRef.current, {
-            opacity: 1,
-            duration: 0.5 
-        }, "-=1")
-
-        return () => {
-            if (splitRef.current) {
-                splitRef.current.revert()
-            }
-            if (tlRef.current?.scrollTrigger) {
-                tlRef.current.scrollTrigger.kill()
-            }
-        }
-
-    }, { 
-        scope: containerRef,
-        dependencies: [textToAnimate, scrollDurationVh],
-        revertOnUpdate: false
-    })
 
     return (
         <section ref={containerRef} id={id} className={`w-full h-screen max-[1441px]:h-auto flex flex-col gap-[60px] justify-start pt-40 pr-10 pb-20 max-[1025px]:pr-5 max-[1025px]:pl-5 max-[1025px]:gap-5 max-[768px]:px-0 max-[768px]:pb-0 max-[768px]:pt-30`}>

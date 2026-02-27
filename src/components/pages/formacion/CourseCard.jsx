@@ -2,14 +2,15 @@ import { motion } from "framer-motion";
 import { Calendar, Clock } from "lucide-react";
 
 export const CourseCard = ({ course, index }) => {
-    const { title, subtitle, start_date, categories, day, month, time_string, day_string, images } = course;
-
+    const { slug, title, subtitle, start_date, categories, day, month, time_string, day_string, location, address, images } = course;
+console.log(course)
     return (
-        <motion.div
+        <motion.a
+            href={`/cursos/${slug}`}
             className="group relative rounded-3xl h-fit"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.15, ease: 'easeOut' }}
+            transition={{ duration: 0.5, delay: index * 0.15, ease: 'easeOut' }}
             whileHover={{ y: -8, transition: { duration: 0.3 } }}
         >
             {/* Borde animado en hover - DEBAJO DE TODO */}
@@ -21,11 +22,13 @@ export const CourseCard = ({ course, index }) => {
                     }}
                 />
             </div>
-
             {/* Contenedor interno con padding */}
             <div className="inset-0 p-3 z-10">
                 {/* Contenedor de la tarjeta con overflow hidden */}
                 <div className="relative w-full h-full rounded-3xl overflow-hidden bg-[#303132] flex flex-col">
+                    <div className="absolute w-full top-1/2 translate-y-[-50%] h-full opacity-100 before:w-full before:h-full before:z-2 before:linear-gradient before:absolute before:inset-0 before:bg-gradient-to-t before:to-120% before:from-40% before:from-[#303132] before:to-transparent">
+                        <img src={images?.featured_image?.url} alt={title} className="scale-[1.15] object-cover w-full h-full group-hover:grayscale transition-all duration-300" />
+                    </div>
                     <div className="absolute inset-0 opacity-20"
                          style={{
                             background: `linear-gradient(135deg, ${categories?.[0]?.color || '#4e5c72'} 0%, transparent 100%)`
@@ -34,7 +37,7 @@ export const CourseCard = ({ course, index }) => {
                     {/* Fecha y categoría sobre la imagen */}
                     <div className="inset-0 z-10 p-3 flex items-start justify-between">
                         <span
-                            className="flex flex-col p-2 px-3 border-1 bg-[#1f1e22d2]/80 text-white justify-center items-center rounded-xl backdrop-blur-[1px] max-[768px]:p-1.5 max-[768px]:px-2"
+                            className="flex flex-col p-2 px-3 border-1 bg-[#1f1e22d2]/80 text-white justify-center items-center rounded-xl backdrop-blur-[1.75px] max-[768px]:p-1.5 max-[768px]:px-2"
                             style={{ borderColor: categories?.[0]?.color || '#4e5c72' }}
                         >
                             <p className="!text-[35px] leading-[1] max-[768px]:!text-[28px]">{day}</p>
@@ -82,6 +85,6 @@ export const CourseCard = ({ course, index }) => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </motion.a>
     );
 }

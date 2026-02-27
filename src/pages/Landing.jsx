@@ -148,7 +148,7 @@ export const Landing = () => {
             <div className="w-full flex flex-col gap-5 mt-10 justify-center items-center py-5 z-1 text-md text-[#b4abab] max-[1200px]:mt-8 max-[1200px]:gap-4 max-[768px]:mt-6 max-[768px]:gap-3 max-[768px]:py-3 max-[768px]:text-sm">
                 <ul className="flex gap-5 max-[1200px]:gap-4 max-[1025px]:flex-wrap max-[1025px]:justify-center max-[768px]:flex-col max-[768px]:gap-2 max-[768px]:items-center">
                     <li>
-                        <Link to="/aviso-legal" className="hover:text-[#e1cfcf] transition-all duration-200ms">© Almattia {new Date().getFullYear()}</Link>
+                        © Almattia {new Date().getFullYear()}
                     </li>
                         <span className="w-0.25 bg-white/40 max-[768px]:hidden"></span>
                     <li>
@@ -164,10 +164,10 @@ export const Landing = () => {
                     </li>
                         <span className="w-0.25 bg-white/40 max-[768px]:hidden"></span>
                     <li>
-                        <Link to="/cookies" className="hover:text-[#e1cfcf] transition-all duration-200ms">Diseño Bittacora</Link>
+                        <Link to="https://bittacora.com" referrerPolicy="no-referrer" target="_blank" className="hover:text-[#e1cfcf] transition-all duration-200ms">Diseño Bittacora</Link>
                     </li>
                 </ul>
-                <Link to="/cookies" className="hover:text-[#e1cfcf] transition-all duration-200ms max-[768px]:text-center max-[1025px]:text-sm max-[768px]:text-xs max-[768px]:px-4">
+                <Link to="/calidad" className="hover:text-[#e1cfcf] transition-all duration-200ms max-[768px]:text-center max-[1025px]:text-sm max-[768px]:text-xs max-[768px]:px-4">
                     Política de Calidad y Gestión Medioambiental
                 </Link>
                 <div className="flex gap-5 max-[768px]:gap-4">

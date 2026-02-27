@@ -7,12 +7,17 @@ import { InfoBackcard } from "./InfoBackcard"
 export const EventoCard = ({ event, index }) => {
 
     return (
-      /*   <a href={`/eventos/${event.slug}`} draggable={false} state={{ event }} className="cursor-pointer group transition-all"> */
+        <motion.a 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.15, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-400px" }}
+            href={`/eventos/${event.slug}`} 
+            draggable={false} 
+            state={{ event }} 
+            className="cursor-pointer group ">
             <motion.div
                 className="group p-3 relative rounded-3xl overflow-hidden bg-[#3f413d] h-[470px] max-[768px]:h-[400px]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.15, ease: 'easeOut' }}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
             >
                 {/* Imagen de fondo */}
@@ -46,7 +51,7 @@ export const EventoCard = ({ event, index }) => {
                     </div>
                 </div>
             </motion.div>
-       /*  </a> */
+        </motion.a>
 
     )
 }
